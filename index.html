@@ -1,27 +1,62 @@
-<!DOCTYPE html>
+# Create the updated index.html file for download again after reset
+content = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000"/>
+  <meta name="theme-color" content="#000000" />
   <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/icon-192.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Palm Vision</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body{margin:0;font-family:Helvetica,Arial,sans-serif;background:radial-gradient(#000,#141414);color:#f5f5f5;text-align:center;}
+    .hero{padding:70px 20px 90px;}
+    .hero h1{font-size:2.3rem;margin:0 0 20px;background:linear-gradient(90deg,gold,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero p{max-width:520px;margin:0 auto 30px;font-size:1.2rem;}
+    .cta{display:inline-block;padding:14px 28px;background:gold;color:#000;border-radius:6px;text-decoration:none;font-size:1rem;}
+    .hint{margin-top:35px;font-size:.9rem;color:#aaa;}
+    #reader{padding:80px 20px 120px;background:#111;}
+    #reader h2{margin-bottom:20px;font-size:1.8rem;}
+    #reader input[type=file]{display:none;}
+    .upload-btn{padding:14px 28px;background:#444;border:2px dashed #666;color:#ccc;border-radius:6px;cursor:pointer;font-size:1rem;}
+    footer{padding:40px 0;color:#666;font-size:.8rem;}
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Your palm speaks.<br/>Palm Vision listens.</h1>
+  <section class="hero">
+    <h1>Your palm speaks.<br>Palm Vision listens.</h1>
     <p>The world’s first metaphysical palm-reading PWA – powered by AI. No downloads. No accounts.</p>
-    <a href="#" class="cta">👉 Start Reading Now</a>
-    <p class="hint">On iPhone or Android?<br/>Tap "Add to Home Screen" for full app experience.</p>
-  </div>
+    <a href="#reader" class="cta">Start reading now</a>
+    <p class="hint">Add Palm Vision to your Home Screen for a full-screen experience.</p>
+  </section>
+  <section id="reader">
+    <h2>Upload your palm</h2>
+    <label for="palmInput" class="upload-btn">Tap here to choose a photo</label>
+    <input id="palmInput" type="file" accept="image/*" />
+    <p style="max-width:420px;margin:25px auto 0;font-size:.95rem;color:#999">
+      Your image stays on your device until the AI has finished the analysis.
+    </p>
+  </section>
+  <footer>
+    © 2025 Palm Vision | Made with Metatron Marketing
+  </footer>
   <script>
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator){
       navigator.serviceWorker.register('/service-worker.js');
     }
+    const input=document.getElementById('palmInput');
+    input.addEventListener('change',e=>{
+      if(e.target.files.length){
+        alert('Palm image selected – analysis yet to be wired.');
+      }
+    });
   </script>
 </body>
-</html>
+</html>"""
+file_path = "/mnt/data/palmvision_index.html"
+with open(file_path, "w") as f:
+    f.write(content)
+file_path
